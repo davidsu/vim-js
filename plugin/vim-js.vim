@@ -1,0 +1,2 @@
+autocmd VimEnter * call MySqlMruVimEnter()
+

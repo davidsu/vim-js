@@ -13,6 +13,7 @@ module.exports = {
     'linebreak-style': [ 'error', 'unix' ],
     quotes: [ 'error', 'single', { avoidEscape: true } ],
     semi: [ 'error', 'never' ],
-    'quote-props': [ 'error', 'as-needed']
+    'quote-props': [ 'error', 'as-needed'],
+    'no-undef': 'error'
   }
 }

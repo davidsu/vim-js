@@ -6,11 +6,16 @@ module.exports = {
   async init({ nvim }) {
     const api = await nvim.requestApi()
     const deserialized = api[1].functions
-      .map(a => a.name)
-      .reduce((map, name) => {
+      .reduce((map, { name }) => {
         map[name] = (...args) => nvim.request(name, args)
         return map
       }, {})
+    deserialized.___api = api[1].functions
+      .reduce((map, _api) => {
+        map[_api.name] = _api
+        return map
+      }, {})
+
     resolve(deserialized)
   }
 }

@@ -52,7 +52,7 @@ module.exports = plugin => {
       } 
       if(fileName) {
         const absolutePath = require('child_process')
-          .execSync(`node -e 'console.log(require.resolve("sdk-iframe-loader", {paths: ["${currentBufferPath}"]}))'`)
+          .execSync(`node -e 'console.log(require.resolve("${fileName}", {paths: ["${currentBufferPath}"]}))'`)
           .toString()
           .trim()
 
@@ -71,8 +71,8 @@ module.exports = plugin => {
   plugin.registerCommand('JSGoToDeclaration', async () => {
     api = await getApi()
     const pos = await getCursorPosition()
-    await jumpWithCoc(pos) || 
-      await jumpWithTsServer(pos) ||
+    // await jumpWithCoc(pos) || 
+    await jumpWithTsServer(pos) ||
       await jumpImport(pos) ||
       fallbackFZF()
   }, { sync: false })
